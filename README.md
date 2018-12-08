@@ -118,3 +118,38 @@ A matches method is defined by this class as a convenience for when a regular ex
 
  boolean b = Pattern.matches("a*b", "aaaaab");
 is equivalent to the three statements above, though for repeated matches it is less efficient since it does not allow the compiled pattern to be reused.
+
+# project description
+## string regex methods
+* `public boolean matches(String regex)`
+    ```
+    // hour
+    assertTrue("1:11".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("9:11".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("0:11".matches("[0-2]?\\d:[0-5]\\d"));
+    
+    // minute
+    assertTrue("1:00".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("9:01".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("0:59".matches("[0-2]?\\d:[0-5]\\d"));
+    assertFalse("0:60".matches("[0-2]?\\d:[0-5]\\d"));
+    
+    // hh
+    assertTrue("00:00".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("01:00".matches("[0-2]?\\d:[0-5]\\d"));
+    assertTrue("21:00".matches("[0-2]?\\d:[0-5]\\d"));
+    assertFalse("30:00".matches("[0-2]?\\d:[0-5]\\d"));
+    ```
+    * **remark**: `matches` is equivalent to the three 
+    statements below, though for repeated matches it is 
+    less efficient since it does not allow the compiled 
+    pattern to be reused.
+        ```
+        Pattern p = Pattern.compile("[0-2]?\\d:[0-5]\\d");
+        Matcher m = p.matcher("11:11");
+        ```
+* `public String[] split(String regex)`
+* `public String[] split(String regex, int limit)` - 
+limit is size of returned array
+* `public String replaceAll(String regex, String replacement)`
+* `public String replaceFirst(String regex, String replacement)`
