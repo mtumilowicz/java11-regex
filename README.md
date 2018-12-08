@@ -149,7 +149,28 @@ is equivalent to the three statements above, though for repeated matches it is l
         Matcher m = p.matcher("11:11");
         ```
 * `public String[] split(String regex)`
+    ```
+    var namesContainer = "Michal--|--Marcin--|--Wojtek--|--Ania";
+    String[] names = namesContainer.split("--\\|--");
+   
+    assertThat(names, is(new String[]{"Michal", "Marcin", "Wojtek", "Ania"}));
+    ```
 * `public String[] split(String regex, int limit)` - 
 limit is size of returned array
+    ```
+    String[] names = "Michal--|--Marcin--|--Wojtek--|--Ania".split("--\\|--", 3);
+    
+    assertThat(names, is(new String[]{"Michal", "Marcin", "Wojtek--|--Ania"}));
+    ```
 * `public String replaceAll(String regex, String replacement)`
+    ```
+    String transformed = "Michal--|--Marcin--|--Wojtek--|--Ania".replaceAll("--\\|--", "|");
+    
+    assertThat(transformed, is("Michal|Marcin|Wojtek|Ania"));
+    ```
 * `public String replaceFirst(String regex, String replacement)`
+    ```
+    String transformed = "Michal--|--Marcin--|--Wojtek--|--Ania".replaceFirst("--\\|--", "|");
+    
+    assertThat(transformed, is("Michal|Marcin--|--Wojtek--|--Ania"));
+    ```
