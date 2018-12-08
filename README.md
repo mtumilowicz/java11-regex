@@ -113,7 +113,7 @@ quantifier, but it doesn't backtrack.
     regex
     
 ## escaping
-The backslash character ('\') serves to introduce 
+The backslash character (`'\'`) serves to introduce 
 escaped constructs, as defined in the table above, 
 as well as to quote characters that otherwise would 
 be interpreted as unescaped constructs.
