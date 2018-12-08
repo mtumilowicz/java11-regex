@@ -2,7 +2,8 @@
 
 _Reference_: https://docs.oracle.com/javase/10/docs/api/java/util/regex/Pattern.html  
 _Reference_: https://stackoverflow.com/questions/5319840/greedy-vs-reluctant-vs-possessive-quantifiers  
-_Reference_: https://javascript.info/regexp-groups#example
+_Reference_: https://javascript.info/regexp-groups#example  
+_Reference_: https://stackoverflow.com/questions/6664151/difference-between-b-and-b-in-regex
 
 # preface
 A regular expression is a way to describe a pattern in a sequence 
@@ -228,3 +229,39 @@ limit is size of returned array
         return m.matches();
     }
     ```
+
+## boundary matchers
+* `^`, `$` is straightforward
+* `\b` - A word boundary
+    * end
+        ```
+        var txt = "catmania thiscat thiscatmania";
+        
+        String replaced = txt.replaceAll("cat\\b", "-");
+        
+        assertThat(replaced, is("catmania this- thiscatmania"));
+        ```
+    * beginning
+        ```
+        var txt = "catmania thiscat thiscatmania";
+        
+        String replaced = txt.replaceAll("\\bcat", "-");
+        
+        assertThat(replaced, is("-mania thiscat thiscatmania"));
+        ```
+* `\B` - A non-word boundary
+    * not end
+        ```
+        
+        ```
+    * not beginning
+        ```
+        
+        ```
+    * neither beginning nor end
+        ```
+        
+        ```
+
+  |`\A`   |The beginning of the input|
+  |`\z`   |The end of the input|
