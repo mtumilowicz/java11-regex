@@ -221,7 +221,13 @@ limit is size of returned array
         * `([\\w]+\\.)+` - (letter/digit once or more times with single dot) once or many times
         * `[\\w]{2,20}` - letter/digits twice to twenty times
 * `public static Pattern compile(String regex, int flags)`
-    * useful flag: `Pattern.CASE_INSENSITIVE`
+    * useful flags: 
+        * `Pattern.MULTILINE` - 
+        In multiline mode the expressions `^` and `$` match
+        just after or just before, respectively, a line terminator or the end of
+        the input sequence.  By default these expressions only match at the
+        beginning and the end of the entire input sequence.
+        * `Pattern.CASE_INSENSITIVE`
 * `public static boolean matches(String regex, CharSequence input)`
     ```
     public static boolean matches(String regex, CharSequence input) {
@@ -276,3 +282,24 @@ limit is size of returned array
         ```
 * `\A` - The beginning of the input and `\z` - The end of the input vs
 `^` and `$`
+    * it differs only when `Pattern.MULTILINE` was set:
+        ```
+        var pattern1 = Pattern.compile("^Michal$");
+        var pattern2 = Pattern.compile("\\AMichal\\z");
+        var pattern_multiline1 = Pattern.compile("^Michal$", Pattern.MULTILINE);
+        var pattern_multiline2 = Pattern.compile("\\AMichal\\z", Pattern.MULTILINE);
+        
+        var txt = "Michal\nMarcin\nAnia";
+        
+        // matches
+        assertFalse(pattern1.matcher(txt).matches());
+        assertFalse(pattern2.matcher(txt).matches());
+        assertFalse(pattern_multiline1.matcher(txt).matches());
+        assertFalse(pattern_multiline2.matcher(txt).matches());
+        
+        // find
+        assertFalse(pattern1.matcher(txt).find());
+        assertFalse(pattern2.matcher(txt).find());
+        assertTrue(pattern_multiline1.matcher(txt).find());
+        assertFalse(pattern_multiline2.matcher(txt).find());
+        ```
