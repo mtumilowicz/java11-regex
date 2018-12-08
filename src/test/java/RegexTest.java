@@ -86,18 +86,18 @@ public class RegexTest {
                 "a.b_cD@a.b.c.d.pl",
                 "m12@wp.com.pl"));
     }
-    
+
     @Test
     public void capturingGroup() {
         assertTrue("gogogogo regex".matches("(go)+\\sregex"));
     }
-    
+
     @Test
     public void word_boundary_end() {
         var txt = "catmania thiscat thiscatmania";
 
         String replaced = txt.replaceAll("cat\\b", "-");
-        
+
         assertThat(replaced, is("catmania this- thiscatmania"));
     }
 
