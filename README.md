@@ -188,3 +188,43 @@ limit is size of returned array
     
     assertThat(transformed, is("Michal|Marcin--|--Wojtek--|--Ania"));
     ```
+
+## pattern methods
+* `public static Pattern compile(String regex)`
+    * very handy is method `public Predicate<String> asMatchPredicate()`
+    (since java11) which creates a predicate that 
+    tests if this pattern matches a given input string
+    ```
+    var emailPattern = Pattern.compile("[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}");
+    
+    List<String> emails;
+    
+    try (var reader = Files.newBufferedReader(Path.of("emails.txt"))) {
+        emails = reader.lines()
+                .filter(emailPattern.asMatchPredicate())
+                .collect(Collectors.toList());
+    }
+    
+    assertThat(emails, hasSize(5));
+    assertThat(emails, contains(
+            "michaltumilowicz@tlen.pl",
+            "michal_tumilowicz@tlen.pl",
+            "MichalTumilowicz@gmail.com",
+            "a.b_cD@a.b.c.d.pl",
+            "m12@wp.com.pl"));
+    ```
+    where `[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}` is:
+        * `[_.\\w]+` - either (`_`, `.`, letter or digit) once or more times
+        * then `@`
+        * `([\\w]+\\.)+` - (letter or digit once or more times with single dot) once or many times
+        * `[\\w]{2,20}` - letter/digits twice to twenty times
+* public static Pattern compile(String regex, int flags)
+    * useful flag: `Pattern.CASE_INSENSITIVE`
+* public static boolean matches(String regex, CharSequence input)
+    ```
+    public static boolean matches(String regex, CharSequence input) {
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(input);
+        return m.matches();
+    }
+    ```
