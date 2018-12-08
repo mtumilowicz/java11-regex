@@ -68,7 +68,7 @@ public class RegexTest {
 
     @Test
     public void pattern_emails() throws IOException {
-        var emailPattern = Pattern.compile("[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}", Pattern.CASE_INSENSITIVE);
+        var emailPattern = Pattern.compile("[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}");
 
         List<String> emails;
 
