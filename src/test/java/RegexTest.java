@@ -86,4 +86,9 @@ public class RegexTest {
                 "a.b_cD@a.b.c.d.pl",
                 "m12@wp.com.pl"));
     }
+    
+    @Test
+    public void capturingGroup() {
+        assertTrue("gogogogo regex".matches("(go)+\\sregex"));
+    }
 }
