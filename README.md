@@ -218,9 +218,9 @@ limit is size of returned array
         * then `@`
         * `([\\w]+\\.)+` - (letter/digit once or more times with single dot) once or many times
         * `[\\w]{2,20}` - letter/digits twice to twenty times
-* public static Pattern compile(String regex, int flags)
+* `public static Pattern compile(String regex, int flags)`
     * useful flag: `Pattern.CASE_INSENSITIVE`
-* public static boolean matches(String regex, CharSequence input)
+* `public static boolean matches(String regex, CharSequence input)`
     ```
     public static boolean matches(String regex, CharSequence input) {
         Pattern p = Pattern.compile(regex);
