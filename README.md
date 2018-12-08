@@ -1,4 +1,7 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-regex.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-regex)
+
 # java11-regex
+Overview of java regex API.
 
 _Reference_: https://docs.oracle.com/javase/10/docs/api/java/util/regex/Pattern.html  
 _Reference_: https://stackoverflow.com/questions/5319840/greedy-vs-reluctant-vs-possessive-quantifiers  
