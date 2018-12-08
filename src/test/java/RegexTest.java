@@ -91,4 +91,49 @@ public class RegexTest {
     public void capturingGroup() {
         assertTrue("gogogogo regex".matches("(go)+\\sregex"));
     }
+    
+    @Test
+    public void word_boundary_end() {
+        var txt = "catmania thiscat thiscatmania";
+
+        String replaced = txt.replaceAll("cat\\b", "-");
+        
+        assertThat(replaced, is("catmania this- thiscatmania"));
+    }
+
+    @Test
+    public void word_boundary_beginning() {
+        var txt = "catmania thiscat thiscatmania";
+
+        String replaced = txt.replaceAll("\\bcat", "-");
+
+        assertThat(replaced, is("-mania thiscat thiscatmania"));
+    }
+
+    @Test
+    public void non_word_boundary_not_beginning() {
+        var txt = "catmania thiscat thiscatmania";
+
+        String replaced = txt.replaceAll("\\Bcat", "-");
+
+        assertThat(replaced, is("catmania this- this-mania"));
+    }
+
+    @Test
+    public void non_word_boundary_not_end() {
+        var txt = "catmania thiscat thiscatmania";
+
+        String replaced = txt.replaceAll("cat\\B", "-");
+
+        assertThat(replaced, is("-mania thiscat this-mania"));
+    }
+
+    @Test
+    public void non_word_boundary_neither_beginning_nor_end() {
+        var txt = "catmania thiscat thiscatmania";
+
+        String replaced = txt.replaceAll("\\Bcat\\B", "-");
+
+        assertThat(replaced, is("catmania thiscat this-mania"));
+    }
 }
