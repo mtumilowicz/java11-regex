@@ -109,3 +109,12 @@ Parentheses group the word (go) together.
 
 The backslash character ('\') serves to introduce escaped constructs, as defined in the table above, as well as to quote characters that otherwise would be interpreted as unescaped constructs. Thus the expression \\ matches a single backslash and \{ matches a left brace.
 
+A typical invocation sequence is thus
+
+ Pattern p = Pattern.compile("a*b");
+ Matcher m = p.matcher("aaaaab");
+ boolean b = m.matches();
+A matches method is defined by this class as a convenience for when a regular expression is used just once. This method compiles an expression and matches an input sequence against it in a single invocation. The statement
+
+ boolean b = Pattern.matches("a*b", "aaaaab");
+is equivalent to the three statements above, though for repeated matches it is less efficient since it does not allow the compiled pattern to be reused.
