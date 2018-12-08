@@ -214,9 +214,9 @@ limit is size of returned array
             "m12@wp.com.pl"));
     ```
     where `[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}` is:
-        * `[_.\\w]+` - either (`_`, `.`, letter or digit) once or more times
+        * `[_.\\w]+` - either (`_`, `.`, letter/digit) once or more times
         * then `@`
-        * `([\\w]+\\.)+` - (letter or digit once or more times with single dot) once or many times
+        * `([\\w]+\\.)+` - (letter/digit once or more times with single dot) once or many times
         * `[\\w]{2,20}` - letter/digits twice to twenty times
 * public static Pattern compile(String regex, int flags)
     * useful flag: `Pattern.CASE_INSENSITIVE`
