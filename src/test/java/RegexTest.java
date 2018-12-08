@@ -136,4 +136,26 @@ public class RegexTest {
 
         assertThat(replaced, is("catmania thiscat this-mania"));
     }
+
+    @Test
+    public void multiline() {
+        var pattern1 = Pattern.compile("^Michal$");
+        var pattern2 = Pattern.compile("\\AMichal\\z");
+        var pattern_multiline1 = Pattern.compile("^Michal$", Pattern.MULTILINE);
+        var pattern_multiline2 = Pattern.compile("\\AMichal\\z", Pattern.MULTILINE);
+        
+        var txt = "Michal\nMarcin\nAnia";
+        
+        // matches
+        assertFalse(pattern1.matcher(txt).matches());
+        assertFalse(pattern2.matcher(txt).matches());
+        assertFalse(pattern_multiline1.matcher(txt).matches());
+        assertFalse(pattern_multiline2.matcher(txt).matches());
+        
+        // find
+        assertFalse(pattern1.matcher(txt).find());
+        assertFalse(pattern2.matcher(txt).find());
+        assertTrue(pattern_multiline1.matcher(txt).find());
+        assertFalse(pattern_multiline2.matcher(txt).find());
+    }
 }
