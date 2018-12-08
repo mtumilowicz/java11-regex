@@ -39,7 +39,7 @@ public class RegexTest {
 
     @Test
     public void string_split() {
-        String namesContainer = "Michal--|--Marcin--|--Wojtek--|--Ania";
+        var namesContainer = "Michal--|--Marcin--|--Wojtek--|--Ania";
         String[] names = namesContainer.split("--\\|--");
 
         assertThat(names, is(new String[]{"Michal", "Marcin", "Wojtek", "Ania"}));
@@ -68,7 +68,7 @@ public class RegexTest {
 
     @Test
     public void pattern_emails() throws IOException {
-        Pattern emailPattern = Pattern.compile("[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}", Pattern.CASE_INSENSITIVE);
+        var emailPattern = Pattern.compile("[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}", Pattern.CASE_INSENSITIVE);
 
         List<String> emails;
 
