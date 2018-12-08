@@ -213,7 +213,7 @@ limit is size of returned array
             "a.b_cD@a.b.c.d.pl",
             "m12@wp.com.pl"));
     ```
-    where `[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}` is:
+    * where `[_.\\w]+@([\\w]+\\.)+[\\w]{2,20}` is:
         * `[_.\\w]+` - either (`_`, `.`, letter/digit) once or more times
         * then `@`
         * `([\\w]+\\.)+` - (letter/digit once or more times with single dot) once or many times
